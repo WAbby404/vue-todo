@@ -14,8 +14,9 @@ const addTask = () => {
   currentTask.value = "";
 };
 
-const editTask = () => {
-  addTask();
+const editTask = (task, index) => {
+  currentTask.value = task;
+  deleteTask(index);
 };
 </script>
 
@@ -29,7 +30,8 @@ const editTask = () => {
   <ul>
     <li v-for="(task, index) in list" :key="index">
       <h2>{{ task }}</h2>
-      <button @click="deleteTask(index)">X</button>
+      <button @click="editTask(task, index)">Edit</button>
+      <button @click="deleteTask(task, index)">X</button>
     </li>
   </ul>
 </template>
