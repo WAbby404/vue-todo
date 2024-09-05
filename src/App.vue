@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, reactive } from "vue";
 
 const list = ref(["Task 1"]);
 const currentTask = ref("");
@@ -29,6 +29,39 @@ watch(volume, (newVolume, oldVolume) => {
     alert("This may cause harm.");
   }
 });
+
+// Immediate and Deep Watchers
+const movie = ref("");
+
+const movieInfo = reactive({ title: "", actor: "" });
+
+watch(
+  movie,
+  (newMovie, oldMovie) => {
+    console.log(`Calling API with movie name = ${movie.value}`);
+  },
+  { immediate: true }
+);
+
+watch(
+  movieInfo,
+  (newMovie, oldMovie) => {
+    console.log(
+      `Calling API with movie name 2 = ${movieInfo.title} ${movieInfo.actor}`
+    );
+  },
+  { deep: true }
+);
+
+const movieList = ref(["Batman", "Superman"]);
+
+watch(
+  movieList,
+  (newMovieList, oldMovieList) => {
+    console.log(newMovieList);
+  },
+  { deep: true }
+);
 </script>
 
 <template>
@@ -38,6 +71,10 @@ watch(volume, (newVolume, oldVolume) => {
     <button @click="volume += 2">Increase</button>
     <button @click="volume -= 2">Decrease</button>
   </div>
+  <input type="text" v-model="movie" />
+  <input type="text" v-model="movieInfo.title" />
+  <input type="text" v-model="movieInfo.actor" />
+  <button @click="movieList.push('Wonderwoman')">Add Movie</button>
   <h1>Vue todo list</h1>
   <form @submit.prevent="addTask">
     <label for="task">Add Task</label>
