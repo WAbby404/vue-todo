@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch, reactive } from "vue";
+import Greet from "./components/Greet.vue";
 
 const list = ref(["Task 1"]);
 const currentTask = ref("");
@@ -62,9 +63,18 @@ watch(
   },
   { deep: true }
 );
+
+// dont need to do this in reactive components
+// export default {
+//   name: "App",
+//   components: {
+//     Greet,
+//   },
+// };
 </script>
 
 <template>
+  <Greet />
   <h2>Volume tracker (0 - 20)</h2>
   <h3>Current Volume - {{ volume }}</h3>
   <div>
