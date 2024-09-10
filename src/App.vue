@@ -74,7 +74,9 @@ watch(
 </script>
 
 <template>
-  <Greet />
+  <Greet name="Toby" heroName="WW" />
+  <Greet name="Abby" heroName="Corn" />
+  <Greet name="Baby" heroName="BB" />
   <h2>Volume tracker (0 - 20)</h2>
   <h3>Current Volume - {{ volume }}</h3>
   <div>

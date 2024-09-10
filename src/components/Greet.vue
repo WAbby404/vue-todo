@@ -1,9 +1,13 @@
 <template>
-  <h2>Hello Abby</h2>
+  <h2>Hello {{ name }} a.k.a. {{ heroName }}</h2>
 </template>
 
-<script>
-export default {
-  name: "Greet",
-};
+<script setup>
+import { defineProps } from "vue";
+const props = defineProps(["name", "heroName"]);
+
+// export default {
+//   name: "Greet",
+//   props: ["name"],
+// };
 </script>
