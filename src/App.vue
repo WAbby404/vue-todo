@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch, reactive } from "vue";
 import Greet from "./components/Greet.vue";
+import Article from "./components/Article.vue";
 
 const list = ref(["Task 1"]);
 const currentTask = ref("");
@@ -36,23 +37,23 @@ const movie = ref("");
 
 const movieInfo = reactive({ title: "", actor: "" });
 
-watch(
-  movie,
-  (newMovie, oldMovie) => {
-    console.log(`Calling API with movie name = ${movie.value}`);
-  },
-  { immediate: true }
-);
+// watch(
+//   movie,
+//   (newMovie, oldMovie) => {
+//     console.log(`Calling API with movie name = ${movie.value}`);
+//   },
+//   { immediate: true }
+// );
 
-watch(
-  movieInfo,
-  (newMovie, oldMovie) => {
-    console.log(
-      `Calling API with movie name 2 = ${movieInfo.title} ${movieInfo.actor}`
-    );
-  },
-  { deep: true }
-);
+// watch(
+//   movieInfo,
+//   (newMovie, oldMovie) => {
+//     console.log(
+//       `Calling API with movie name 2 = ${movieInfo.title} ${movieInfo.actor}`
+//     );
+//   },
+//   { deep: true }
+// );
 
 const movieList = ref(["Batman", "Superman"]);
 
@@ -71,12 +72,25 @@ watch(
 //     Greet,
 //   },
 // };
+
+// Passing reactive props example
+const name = ref("Abby");
+const channel = ref("Codeevlution");
 </script>
 
 <template>
-  <Greet name="Toby" heroName="WW" />
+  <!-- <Greet name="Toby" heroName="WW" />
   <Greet name="Abby" heroName="Corn" />
   <Greet name="Baby" heroName="BB" />
+  <Greet :name="name" :heroName="channel" /> -->
+
+  <Article
+    id="my-article"
+    title="Article title"
+    :likes="9"
+    :isPublished="true"
+  />
+  <!-- 
   <h2>Volume tracker (0 - 20)</h2>
   <h3>Current Volume - {{ volume }}</h3>
   <div>
@@ -99,7 +113,7 @@ watch(
       <button @click="editTask(task, index)">Edit</button>
       <button @click="deleteTask(index)">X</button>
     </li>
-  </ul>
+  </ul> -->
 </template>
 
 <style scoped></style>
