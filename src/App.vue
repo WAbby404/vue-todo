@@ -1,8 +1,15 @@
 <script setup>
-import { ref, watch, reactive } from "vue";
+import { ref, watch, reactive, provide } from "vue";
 import Greet from "./components/Greet.vue";
 import Article from "./components/Article.vue";
 
+// Provide & Inject
+provide("message", "Taco tuesday!");
+
+const count = ref(0);
+provide("count", count);
+
+// Ref practice
 const list = ref(["Task 1"]);
 const currentTask = ref("");
 
@@ -79,6 +86,9 @@ const channel = ref("Codeevlution");
 </script>
 
 <template>
+  <!-- for provide inject example -->
+  <button @click="count += 1">Add 1</button>
+
   <!-- <Greet name="Toby" heroName="WW" />
   <Greet name="Abby" heroName="Corn" />
   <Greet name="Baby" heroName="BB" />
