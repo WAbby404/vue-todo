@@ -2,6 +2,14 @@
 import { ref, watch, reactive, provide } from "vue";
 import Greet from "./components/Greet.vue";
 import Article from "./components/Article.vue";
+import Popup from "./components/Popup.vue";
+
+// Component Events
+const showPopup = ref(false);
+const closePopup = (value) => {
+  showPopup.value = false;
+  console.log(value);
+};
 
 // Provide & Inject
 provide("message", "Taco tuesday!");
@@ -86,6 +94,10 @@ const channel = ref("Codeevlution");
 </script>
 
 <template>
+  <!-- Component Events example-->
+  <button @click="showPopup = true">Show Popup</button>
+  <Popup v-show="showPopup" @close="closePopup" />
+
   <!-- for provide inject example -->
   <button @click="count += 1">Add 1</button>
 
