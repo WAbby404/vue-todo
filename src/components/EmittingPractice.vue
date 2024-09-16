@@ -3,8 +3,6 @@
 </template>
 
 <script setup>
-import { defineEmits } from "vue";
-
 const emit = defineEmits(["customEvent"]);
 function notifyParent() {
   emit("customEvent", { message: "Hello from child." });
