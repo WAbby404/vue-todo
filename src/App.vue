@@ -4,58 +4,63 @@ import Greet from "./components/Greet.vue";
 import Article from "./components/Article.vue";
 import Popup from "./components/Popup.vue";
 import EmittingPractice from "./components/EmittingPractice.vue";
+import VmodelComponent from "./components/VmodelComponent.vue";
+import VInput from "./components/VInput.vue";
+
+// Component v-model
+const vModelName = ref("");
 
 // Component Events
-const showPopup = ref(false);
-const closePopup = (value) => {
-  showPopup.value = false;
-  console.log(value);
-};
+// const showPopup = ref(false);
+// const closePopup = (value) => {
+//   showPopup.value = false;
+//   console.log(value);
+// };
 
-const handleCustomEvent = (eventData) => {
-  console.log("Recieved from child:", eventData.message);
-};
+// const handleCustomEvent = (eventData) => {
+//   console.log("Recieved from child:", eventData.message);
+// };
 
 // Provide & Inject
-provide("message", "Taco tuesday!");
+// provide("message", "Taco tuesday!");
 
-const count = ref(0);
-provide("count", count);
+// const count = ref(0);
+// provide("count", count);
 
 // Ref practice
-const list = ref(["Task 1"]);
-const currentTask = ref("");
+// const list = ref(["Task 1"]);
+// const currentTask = ref("");
 
-const deleteTask = (index) => {
-  list.value.splice(index, 1);
-};
+// const deleteTask = (index) => {
+//   list.value.splice(index, 1);
+// };
 
-const addTask = () => {
-  list.value.push(`${currentTask.value}`);
-  currentTask.value = "";
-};
+// const addTask = () => {
+//   list.value.push(`${currentTask.value}`);
+//   currentTask.value = "";
+// };
 
-const editTask = (task, index) => {
-  currentTask.value = task;
-  deleteTask(index);
-};
+// const editTask = (task, index) => {
+//   currentTask.value = task;
+//   deleteTask(index);
+// };
 
 // Watcher example
-const volume = ref(0);
+// const volume = ref(0);
 
-watch(volume, (newVolume, oldVolume) => {
-  console.log(volume.value);
-  console.log(newVolume);
-  console.log(oldVolume);
-  if (newVolume > oldVolume && newVolume === 16) {
-    alert("This may cause harm.");
-  }
-});
+// watch(volume, (newVolume, oldVolume) => {
+//   console.log(volume.value);
+//   console.log(newVolume);
+//   console.log(oldVolume);
+//   if (newVolume > oldVolume && newVolume === 16) {
+//     alert("This may cause harm.");
+//   }
+// });
 
 // Immediate and Deep Watchers
-const movie = ref("");
+// const movie = ref("");
 
-const movieInfo = reactive({ title: "", actor: "" });
+// const movieInfo = reactive({ title: "", actor: "" });
 
 // watch(
 //   movie,
@@ -75,15 +80,15 @@ const movieInfo = reactive({ title: "", actor: "" });
 //   { deep: true }
 // );
 
-const movieList = ref(["Batman", "Superman"]);
+// const movieList = ref(["Batman", "Superman"]);
 
-watch(
-  movieList,
-  (newMovieList, oldMovieList) => {
-    console.log(newMovieList);
-  },
-  { deep: true }
-);
+// watch(
+//   movieList,
+//   (newMovieList, oldMovieList) => {
+//     console.log(newMovieList);
+//   },
+//   { deep: true }
+// );
 
 // dont need to do this in reactive components
 // export default {
@@ -94,30 +99,34 @@ watch(
 // };
 
 // Passing reactive props example
-const name = ref("Abby");
-const channel = ref("Codeevlution");
+// const name = ref("Abby");
+// const channel = ref("Codeevlution");
 </script>
 
 <template>
+  <!-- Component v-model -->
+  <!-- <VmodelComponent v-model="countModel" /> -->
+  <VInput />
+
   <!-- Component Events example-->
-  <button @click="showPopup = true">Show Popup</button>
+  <!-- <button @click="showPopup = true">Show Popup</button>
   <Popup v-show="showPopup" @close="closePopup" />
-  <EmittingPractice @customEvent="handleCustomEvent" />
+  <EmittingPractice @customEvent="handleCustomEvent" /> -->
 
   <!-- for provide inject example -->
-  <button @click="count += 1">Add 1</button>
+  <!-- <button @click="count += 1">Add 1</button> -->
 
   <!-- <Greet name="Toby" heroName="WW" />
   <Greet name="Abby" heroName="Corn" />
   <Greet name="Baby" heroName="BB" />
   <Greet :name="name" :heroName="channel" /> -->
 
-  <Article
+  <!-- <Article
     id="my-article"
     title="Article title"
     :likes="9"
     :isPublished="true"
-  />
+  /> -->
   <!-- 
   <h2>Volume tracker (0 - 20)</h2>
   <h3>Current Volume - {{ volume }}</h3>
